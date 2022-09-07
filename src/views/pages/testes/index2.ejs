@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--=== Coding by CodingLab | www.codinglabweb.com === -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta data-name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="index2.css">
+    <link rel="stylesheet" href="model.css">
+    <link rel="stylesheet" href="form.css">
+  
+    <!--===== Boxicons CSS =====-->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <title>Image Gallery with Search Box</title>
+</head>
+<body>
+  <div class="container">
+    <div class="search-box">
+      <i class="bx bx-search"></i>
+      <input type="text" placeholder="Search a movie">
+    </div>
+
+      <div class="images">
+        <% snapshot.forEach(function(data) { %>
+          <button class="open-modal-button">
+            <div class="image-box" data-name="<%= data.Pesquisa %>">
+              <img src="<%= data.Capa %>" alt="<%= data.Pesquisa %>">
+              <h6><%= data.Pesquisa %></h6>
+            </div>
+          </button>
+        <% }); %>
+      </div>
+  </div>
+
+
+    <div class="modal-container">
+      <div class="modal">
+    
+        <div class="box">
+        <form action="">
+          <br>
+            <div class="inputBox">
+              <input type="text" name="nome" id="nome" class="inputUser" required>
+              <label for="nome" class="labelInput">Nome completo</label>
+            </div>
+          <br>
+          <br>
+            <div class="inputBox">
+              <input type="text" name="email" id="email" class="inputUser" required>
+                <label for="email" class="labelInput">Email</label>
+                </div>
+                <br><br>
+                <div class="inputBox">
+                    <input type="tel" name="telefone" id="telefone" class="inputUser" required>
+                    <label for="telefone" class="labelInput">Telefone</label>
+                </div>
+                <p>Sexo:</p>
+                <input type="radio" id="feminino" name="genero" value="feminino" required>
+                <label for="feminino">Feminino</label>
+                <br>
+                <input type="radio" id="masculino" name="genero" value="masculino" required>
+                <label for="masculino">Masculino</label>
+                <br>
+                <input type="radio" id="outro" name="genero" value="outro" required>
+                <label for="outro">Outro</label>
+                <br><br>
+                <label for="data_nascimento"><b>Data de Nascimento:</b></label>
+                <input type="date" name="data_nascimento" id="data_nascimento" required>
+                <br><br><br>
+                <div class="inputBox">
+                    <input type="text" name="cidade" id="cidade" class="inputUser" required>
+                    <label for="cidade" class="labelInput">Cidade</label>
+                </div>
+                <br><br>
+                <div class="inputBox">
+                    <input type="text" name="estado" id="estado" class="inputUser" required>
+                    <label for="estado" class="labelInput">Estado</label>
+                </div>
+                <br><br>
+                <div class="inputBox">
+                    <input type="text" name="endereco" id="endereco" class="inputUser" required>
+                    <label for="endereco" class="labelInput">Endereço</label>
+                </div>
+                <br><br>
+                <input type="submit" name="submit" id="submit">
+            </fieldset>
+        </form>
+    </div>
+      </p>
+    </div>
+  </div>
+            
+    <script src="index2.js"></script>
+    <script src="model.js"></script>
+</body>
+</html>
+
+            
+  <% snapshot.forEach(function(data) { %>
+    <tr>
+      <td><%= data.id %></td>
+      <td><img width="50px" src="<%= data.Capa %>" class="avatar"></td>
+      <td><%= data.DialogTitulo %></td>
+      <td><button type="button" class="btn btn-outline-secondary" onclick="showUserEditBox(<%= data.id %>)">Edit</button>
+      <button type="button" class="btn btn-outline-danger" onclick="userDelete(<%= data.id %>)">Del</button></td>
+    </tr>
+  <% }); %>
